@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: dotnet-dec7-vxxxx
-        image: vipinbmenon/dotnet-dec7:devops.vxxxx..#{Build.BuildId}#
+        image: adityaregistry.azurecr.io/dotnet-dec7:devops.vxxxx..#{Build.BuildId}#
         ports:
         - name: nginxport
           containerPort: 80
