@@ -1,0 +1,33 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dotnet-dec7-vxxxx
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: dotnet-dec7-vxxxx
+    spec:
+      containers:
+      - name: dotnet-dec7-vxxxx
+        image: vipinbmenon/dotnet-dec7:devops.vxxxx..#{Build.BuildId}#
+        ports:
+        - name: nginxport
+          containerPort: 80
+---
+#kubectl expose deployment helloworld-deployment --type=NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-dec7-service-vxxxx
+spec:
+  ports:
+  - port: 8888
+    nodePort: 31196
+    targetPort: nginxport
+    protocol: TCP
+  selector:
+    app: dotnet-dec7-vxxxx
+  type: LoadBalancer
